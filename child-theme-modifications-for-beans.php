@@ -18,35 +18,29 @@ if ( !file_exists( get_template_directory() . '/lib/api/init.php' ) )
 
 
 /**
- * Main Child_Theme_Modifications_For_Beans Class
+ * Main Tbr_Child_Theme_Modifications_For_Beans Class
  *
- * @class Child_Theme_Modifications_For_Beans
+ * @class Tbr_Child_Theme_Modifications_For_Beans
  * @version	1.0.0
  * @since 1.0.0
- * @package	Child_Theme_Modifications_For_Beans
+ * @package	Tbr_Child_Theme_Modifications_For_Beans
  */
-final class Child_Theme_Modifications_For_Beans {
+final class Tbr_Child_Theme_Modifications_For_Beans {
 
 	public function __construct () {
 
+				add_action( 'beans_uikit_enqueue_scripts', array( $this, 'tbr_ctm_uikit' ) );
+
+				require_once( 'custom/functions.php' );
 
 	}
 
-	/**
-	 * Setup all the things
-	 */
-	public function theme_customisations_setup() {
-
-		add_action( 'beans_uikit_enqueue_scripts', array( $this, 'child_theme_modifications_for_beans_uikit' ) );
-
-		require_once( 'custom/functions.php' );
-	}
 
 	/**
 	 * Enqueue the UIkit Overrides
 	 * @return void
 	 */
-	public function child_theme_modifications_for_beans_uikit() {
+	public function tbr_ctm_uikit() {
 
 		beans_uikit_enqueue_theme( 'uikit', plugins_url( '/custom/uikit/', __FILE__  ) );
 		beans_compiler_add_fragment( 'uikit', plugins_url( '/custom/custom.css', __FILE__ ), 'css' );
@@ -60,14 +54,8 @@ final class Child_Theme_Modifications_For_Beans {
  * The 'main' function
  * @return void
  */
-function __child_theme_modifications_for_beans_main() {
+function __tbr_ctm_main() {
 
-	new Child_Theme_Modifications_For_Beans();
+	new Tbr_Child_Theme_Modifications_For_Beans();
 
 }
-
-
-/**
- * Initialise the plugin
- */
-add_action( 'plugins_loaded', '__child_theme_modifications_for_beans_main' );
