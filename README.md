@@ -11,7 +11,9 @@ In fact, it's arguable that you're better off using this plugin regardless of wh
 
 == Usage ==
 
-* Add any CSS snippets to `custom/style.css`.
+* Add any UIkit style overrides to the `custom/uikit/ folder`.
+* Add any LESS snippets to `custom/custom.less`.
+* Add any CSS snippets to `custom/custom.css`.
 * Add any PHP snippets to `custom/functions.php`.
 * Activate the plugin.
 
