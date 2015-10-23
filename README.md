@@ -89,4 +89,4 @@ function custom_modify_child_theme() {
 	// Or move them around completely
 	beans_modify_action_hook( 'beans_breadcrumb', 'beans_main_append_markup');
 
-}<pre>
+}</pre>
