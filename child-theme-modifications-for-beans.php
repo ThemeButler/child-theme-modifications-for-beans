@@ -16,46 +16,42 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 if ( !file_exists( get_template_directory() . '/lib/api/init.php' ) )
 	return;
 
+	require_once( get_template_directory() . '/lib/init.php' );
+
+add_action( 'plugins_loaded', 'tbr_child_theme_modifications_init' );
 
 /**
- * Main Tbr_Child_Theme_Modifications_For_Beans Class
- *
- * @class Tbr_Child_Theme_Modifications_For_Beans
- * @version	1.0.0
- * @since 1.0.0
- * @package	Tbr_Child_Theme_Modifications_For_Beans
+ * Initialise the plugin
+ * @return void
  */
-final class Tbr_Child_Theme_Modifications_For_Beans {
+function tbr_child_theme_modifications_init() {
 
-	public function __construct () {
+	require_once( 'custom/functions.php' );
 
-				add_action( 'beans_uikit_enqueue_scripts', array( $this, 'tbr_ctm_uikit' ) );
+	add_action( 'beans_uikit_enqueue_scripts', 'tbr_child_theme_modifications_for_beans_uikit', 10 );
+	add_action( 'wp_enqueue_scripts', 'tbr_child_theme_modifications_for_beans_custom', 10 );
 
-				require_once( 'custom/functions.php' );
-
-	}
+}
 
 
-	/**
-	 * Enqueue the UIkit Overrides
-	 * @return void
-	 */
-	public function tbr_ctm_uikit() {
+/**
+ * Enqueue the UIkit Overrides
+ * @return void
+ */
+function tbr_child_theme_modifications_for_beans_uikit() {
 
-		beans_uikit_enqueue_theme( 'uikit', plugins_url( '/custom/uikit/', __FILE__  ) );
-		beans_compiler_add_fragment( 'uikit', plugins_url( '/custom/custom.css', __FILE__ ), 'css' );
-		beans_compiler_add_fragment( 'uikit', plugins_url( '/custom/custom.less', __FILE__ ), 'less' );
-		beans_compiler_add_fragment( 'uikit', plugins_url( '/custom/custom.js', __FILE__ ), 'js' );
+	beans_uikit_enqueue_theme( 'uikit', plugins_url( '/custom/uikit/', __FILE__  ) );
+	beans_compiler_add_fragment( 'uikit', plugins_url( '/custom/custom.less', __FILE__ ), 'less' );
 
-	}
 }
 
 /**
- * The 'main' function
+ * Enqueue the UIkit Overrides
  * @return void
  */
-function __tbr_ctm_main() {
+function tbr_child_theme_modifications_for_beans_custom() {
 
-	new Tbr_Child_Theme_Modifications_For_Beans();
+	wp_enqueue_script( 'custom', plugins_url( '/custom/custom.js', __FILE__ ), 'js' );
+	wp_enqueue_style( 'custom', plugins_url( '/custom/custom.css', __FILE__ ), 'css' );
 
 }

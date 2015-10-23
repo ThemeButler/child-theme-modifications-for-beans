@@ -26,3 +26,67 @@ This is a fork of the WooThemes Theme Customizations plugin and has been updated
 ## Please note:
 
 This plugin is still in active development and should not be used for production sites.
+
+## Snippets for your functions.php
+
+### Enable support for UIkits components
+
+Using the example function below, you can easily register any of the core and add-on components in UIkits library. Be sure to check the UIkit website for a full list of the available components.
+
+<pre><code>// Enqueue custom assets
+add_action( 'beans_uikit_enqueue_scripts', 'custom_enqueue_uikit_assets', 5 );
+
+function custom_enqueue_uikit_assets() {
+
+	beans_uikit_enqueue_components( array( 'contrast' ) );
+    beans_uikit_enqueue_components( array( 'sticky' ), 'add-ons' );
+
+}<code></pre>
+
+#### See the available components here:
+-http://getuikit.com/docs/core.html
+-http://getuikit.com/docs/components.html
+
+The UIkit components are located in the /wp-content/themes/tm-beans/lib/api/uikit/src/less/ folder. All the core components are located in the 'core' folder and add-on components in the 'components' folder.
+
+Make note of the above locations, as you'll reference them when overriding any of the UIkit LESS variables.
+
+### Modifying your child-theme output
+
+One of the best features of Beans, is the ability to easily modify your themes markup, without the need to override an entire file. This is especially useful when taking advantage of UIkit.
+
+Below are a few examples of ways you can modify your markup using Beans.
+
+<pre><code>// Customize the child theme output
+add_action( 'beans_before_load_document', 'custom_modify_child_theme' );
+
+function custom_modify_child_theme() {
+
+	// Remove any HTML markup (registered with Beans) using the Markup ID
+    beans_remove_markup( 'beans_site' );
+
+	// Remove entire actions
+	beans_remove_action( 'beans_breadcrumb' );
+
+	// Add custom attributes to existing markup
+    beans_add_attribute( 'beans_header', 'data-uk-sticky', 'top:0' );
+
+	// For example custom classes (essential for easily implementing UIkit components)
+	beans_add_attribute( 'beans_header', 'class', 'uk-contrast' );
+
+	// Remove attributes just as easily. You can remove a specific attribute property
+	beans_remove_attribute( 'beans_header', 'class', ' uk-block' );
+
+	// Or the entire attribute, ie all classes
+	beans_remove_attribute( 'beans_post', 'class' );
+
+	// Don't want your content layout centered? Simply remove the wrapper center class
+	beans_remove_attribute( 'beans_main_wrap', 'class', 'uk-container-center' );
+
+	// Changing an actions priority lets you easily re-order elements on the page
+	beans_modify_action_priority( 'beans_primary_menu', 0 );
+
+	// Or move them around completely
+	beans_modify_action_hook( 'beans_breadcrumb', 'beans_main_append_markup');
+
+}<code></pre>
