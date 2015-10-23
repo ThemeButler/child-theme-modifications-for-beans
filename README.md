@@ -38,7 +38,7 @@ add_action( 'beans_uikit_enqueue_scripts', 'custom_enqueue_uikit_assets', 5 );
 
 function custom_enqueue_uikit_assets() {
 
-	beans_uikit_enqueue_components( array( 'contrast' ) );
+	beans_uikit_enqueue_components( array( 'contrast', 'flex', 'overlay' ) );
     beans_uikit_enqueue_components( array( 'sticky' ), 'add-ons' );
 
 }<code></pre>
@@ -57,7 +57,7 @@ One of the best features of Beans, is the ability to easily modify your themes m
 
 Below are a few examples of ways you can modify your markup using Beans.
 
-<pre><code>// Customize the child theme output
+<code>// Customize the child theme output
 add_action( 'beans_before_load_document', 'custom_modify_child_theme' );
 
 function custom_modify_child_theme() {
@@ -89,4 +89,4 @@ function custom_modify_child_theme() {
 	// Or move them around completely
 	beans_modify_action_hook( 'beans_breadcrumb', 'beans_main_append_markup');
 
-}<code></pre>
+}<code>
