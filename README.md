@@ -33,15 +33,15 @@ This plugin is still in active development and should not be used for production
 
 Using the example function below, you can easily register any of the core and add-on components in UIkits library. Be sure to check the UIkit website for a full list of the available components.
 
-<code>// Enqueue custom assets
+<pre>// Enqueue custom assets
 add_action( 'beans_uikit_enqueue_scripts', 'custom_enqueue_uikit_assets', 5 );
 
 function custom_enqueue_uikit_assets() {
 
-	beans_uikit_enqueue_components( array( 'contrast', 'flex', 'overlay' ) );
+    beans_uikit_enqueue_components( array( 'contrast', 'flex', 'overlay' ) );
     beans_uikit_enqueue_components( array( 'sticky' ), 'add-ons' );
 
-}</code>
+}</pre>
 
 #### See the available components here:
 -http://getuikit.com/docs/core.html
