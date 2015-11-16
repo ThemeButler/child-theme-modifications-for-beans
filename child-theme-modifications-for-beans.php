@@ -24,9 +24,9 @@ require_once( get_template_directory() . '/lib/api/init.php' );
  * Initialise the plugin
  * @return void
  */
-add_action( 'plugins_loaded', 'tbr_beans_customizer_init' );
+add_action( 'plugins_loaded', 'ctm_init' );
 
-function tbr_beans_customizer_init() {
+function ctm_init() {
 
 	require_once( 'custom/functions.php' );
 
@@ -39,7 +39,7 @@ function tbr_beans_customizer_init() {
  * Enqueue the UIkit Overrides
  * @return void
  */
-function tbr_beans_customizer_uikit() {
+function ctm_uikit() {
 
 	beans_uikit_enqueue_theme( 'uikit', plugins_url( '/custom/uikit/', __FILE__  ) );
 	beans_compiler_add_fragment( 'uikit', plugins_url( '/custom/custom.less', __FILE__ ), 'less' );
