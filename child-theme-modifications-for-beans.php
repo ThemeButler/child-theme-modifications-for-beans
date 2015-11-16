@@ -1,18 +1,18 @@
 <?php
 /**
  * Plugin Name: Child-Theme Modifications for Beans
- * Description: A simple plugin to keep your Beans child-theme customizations seperate from the theme.
+ * Description: A simple plugin to keep your customizations separate from your Beans child-theme.
  * Version: 	1.0.0
  * Author: 		ThemeButler
  * Author URI: 	http://www.themebutler.com/
- * Credits:		Based on Theme Customizations plugin, by WooThemes. Modified to use Beans compiler.
+ * Credits:		Originally inspired by the Theme Customizations by WooThemes.
  * @package Child_Theme_Modifications_For_Beans
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 
-// Stop here if Beans is not available.
+// Stop here if Beans is not available
 if ( !file_exists( get_template_directory() . '/lib/api/init.php' ) )
 	return;
 
