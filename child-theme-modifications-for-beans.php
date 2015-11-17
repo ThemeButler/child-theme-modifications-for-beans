@@ -30,7 +30,7 @@ function ctm_init() {
 
 	require_once( 'custom/functions.php' );
 
-	add_action( 'beans_uikit_enqueue_scripts', 'tbr_child_theme_modifications_for_beans_uikit' );
+	add_action( 'beans_uikit_enqueue_scripts', 'ctm_uikit' );
 
 }
 
